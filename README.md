@@ -1,5 +1,6 @@
 <h1>Heat React.js</h1>
 <p>Este projeto foi feito no evento da Rocketseate NLW 7, a versão web foi feita com React.js fazendo integração com a api do evento, dentre suas funcionalidades, é possivel: fazer login pelo github, enviar mensagens, exibir as 3 últimas mensagens do banco de dados e fazer logout.</p>
+<p >Api do projeto: <a href="https://github.com/lulucasalves/heatnode-api-back/" >heatnode-api-back</a></p>
 <img src="https://github.com/lulucasalves/heatreactjs-project-front/blob/main/.github/img-1.png" />
 <img src="https://github.com/lulucasalves/heatreactjs-project-front/blob/main/.github/img-2.png" />
 <br/>
