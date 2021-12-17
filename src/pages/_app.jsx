@@ -1,5 +1,6 @@
 import '../styles/globals.css'
 import { createGlobalStyle } from 'styled-components'
+import { Provider } from '../auth'
 
 const GlobalStyle = createGlobalStyle`
   //Global Colors
@@ -18,11 +19,13 @@ const GlobalStyle = createGlobalStyle`
   }
 `
 
-function MyApp({Component, pageProps}) {
+function MyApp({ Component, pageProps }) {
   return (
     <>
       <GlobalStyle />
-      <Component {...pageProps} />
+      <Provider>
+        <Component {...pageProps} />
+      </Provider>
     </>
   )
 }

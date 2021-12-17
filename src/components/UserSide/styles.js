@@ -72,7 +72,6 @@ export const TextArea = styled.textarea`
   padding: ${props => (props.padding ? props.padding : '24px')};
   height: ${props => (props.height ? props.height : '212px')};
   width: ${props => (props.width ? props.width : '100%')};
-  text-transform: capitalize;
   background-color: #202024;
   border: none;
 `

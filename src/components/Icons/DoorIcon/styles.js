@@ -12,4 +12,9 @@ export const Base = styled.p`
   right: ${props => (props.right ? props.right : '')};
   bottom: ${props => (props.bottom ? props.bottom : '')};
   position: ${props => (props.position ? props.position : 'absolute')};
+  cursor: ${props => (props.cursor ? props.cursor : '')};
+
+  &:hover {
+    filter: brightness(0.8);
+  }
 `

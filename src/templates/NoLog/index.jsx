@@ -1,6 +1,6 @@
 import { CommentsSide } from '../../components/CommentsSide'
 import { LoginSide } from '../../components/LoginSide'
-import { Base, ItemsDiv, Div } from './styles'
+import { Base, ItemsDiv} from './styles'
 
 export function NoLog(props) {
   return (

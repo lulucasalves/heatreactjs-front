@@ -5,24 +5,28 @@ import { Button } from '../Button'
 import { Base, ItemsDiv, DivAbsolute, Div, Img, TextArea } from './styles'
 import { api } from '../../pages/api/api'
 import Image from 'next/image'
+import { useContext } from 'react'
+import { MyContext } from '../../auth'
+import io from 'socket.io-client'
 
 export function UserSide(props) {
-  const [user, setUser] = useState([
-    {
-      avatar_url: 'https://avatars.githubusercontent.com/u/72206769?v=4',
-      name: 'Lucas Alves',
-      login: 'lulucasalves',
-      id: 1123132
-    }
-  ])
+  const { signOut, users } = useContext(MyContext)
 
-  useEffect(() => {
-    async function getUser() {
-      await api.get('/profile').then(res => setUser(res))
-    }
+  const [message, setMessage] = useState('')
 
-    //getUser()
-  }, [])
+  const [user, setUser] = useState([users])
+
+  const socket = io('http://localhost:5000')
+
+  socket.on('new_message', data => console.log(data))
+
+  async function postMessage() {
+    await api.post('/messages', {
+      message
+    })
+
+    setMessage('')
+  }
 
   return (
     <Base>
@@ -40,10 +44,10 @@ export function UserSide(props) {
             padding="24px"
             position="relative"
           >
-            <Door />
+            <Door cursor="pointer" onClick={() => signOut()} />
             {user.map(val => {
               return (
-                <>
+                <Div display="block" key={val.id}>
                   <Div
                     padding="3px"
                     background="linear-gradient(100deg, #ff008e 0%, #ffcd1e 100%)"
@@ -76,7 +80,7 @@ export function UserSide(props) {
                       {val.login}
                     </DefaultText>
                   </Div>
-                </>
+                </Div>
               )
             })}
             <Div background="#29292E" padding="24px 18px">
@@ -84,8 +88,17 @@ export function UserSide(props) {
                 Mensagem
               </DefaultText>
             </Div>{' '}
-            <TextArea />
-            <Button position="absolute" bottom="48px" right="48px">
+            <TextArea
+              placeholder="Qual sua expectativa para o evento?"
+              onChange={event => setMessage(event.target.value)}
+              value={message}
+            />
+            <Button
+              onClick={() => postMessage()}
+              position="absolute"
+              bottom="48px"
+              right="48px"
+            >
               enviar mensagem
             </Button>
           </Div>

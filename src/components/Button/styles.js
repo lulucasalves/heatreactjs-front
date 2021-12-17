@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const Base = styled.button`
+export const Base = styled.a`
   z-index: ${props => (props.zIndex ? props.zIndex : '')};
   background: ${props => (props.background ? props.background : '#ff008e')};
   color: ${props => (props.color ? props.color : '#fff')};
@@ -19,6 +19,6 @@ export const Base = styled.button`
   bottom: ${(props) => (props.bottom ? props.bottom : '')};
 
   &:hover {
-    filter: brightness(0.9);
+    filter: brightness(0.8);
   }
 `

@@ -5,39 +5,14 @@ import { Base, ItemsDiv, Div, Img, DivMessage } from './styles'
 import { api } from '../../pages/api/api'
 
 export function CommentsSide(props) {
-  const [comment, setComment] = useState([
-    {
-      id: 132423432434,
-      text: 'Não vejo a hora de começar esse evento, com certeza vai ser o melhor de todos os tempos, vamooo pra cima! 🔥🔥',
-      user: {
-        name: 'Lucas Alves',
-        avatar_url: 'https://avatars.githubusercontent.com/u/72206769?v=4'
-      }
-    },
-    {
-      id: 32131231214,
-      text: 'Não vejo a hora de começar esse evento, com certeza vai ser o melhor de todos os tempos, vamooo pra cima! 🔥🔥',
-      user: {
-        name: 'Lucas Alves',
-        avatar_url: 'https://avatars.githubusercontent.com/u/72206769?v=4'
-      }
-    },
-    {
-      id: 80434823797,
-      text: 'Não vejo a hora de começar esse evento, com certeza vai ser o melhor de todos os tempos, vamooo pra cima! 🔥🔥',
-      user: {
-        name: 'Lucas Alves',
-        avatar_url: 'https://avatars.githubusercontent.com/u/72206769?v=4'
-      }
-    }
-  ])
+  const [comment, setComment] = useState([])
 
   useEffect(() => {
     async function getMessages() {
-      await api.get('/messages/last3').then(res => setComment(res))
+      await api.get('/messages/last3').then(res => setComment(res.data))
     }
 
-    //getMessages()
+    getMessages()
   }, [])
 
   return (
@@ -50,7 +25,7 @@ export function CommentsSide(props) {
           {comment.map(val => {
             return (
               <DivMessage
-                key={val.id}
+                key={val.created_at}
                 margin="40px 0 0 0"
                 display="block"
                 width="440px"
